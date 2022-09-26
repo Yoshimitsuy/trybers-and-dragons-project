@@ -1,6 +1,6 @@
 import ArcheType, { Mage, Necromancer, Ranger, Warrior } from './Archetypes';
 import IEnergy from './Energy';
-import IFighter from './Fighter';
+import IFighter, { SimpleFighter } from './Fighter';
 import Race, { Elf } from './Races';
 import getRandomInt from './utils';
 
@@ -68,7 +68,7 @@ export default class Character implements IFighter {
     return this._lifePoints;
   }
 
-  attack(enemy: IFighter): void {
+  attack(enemy: IFighter | SimpleFighter): void {
     enemy.receiveDamage(this._strength);
   }
 
@@ -87,7 +87,7 @@ export default class Character implements IFighter {
     this._lifePoints = this._maxLifePoints;
   }
 
-  special(enemy: IFighter): void {
+  special(enemy: IFighter | SimpleFighter): void {
     if (Warrior && Ranger) {
       const ultimate1 = this._strength * 4;
       const ultimate2 = this._defense * 4;
